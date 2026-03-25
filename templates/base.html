@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital DBMS - {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/your-fontawesome-key.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <aside>
+        <div class="logo">
+            <i class="fas fa-hospital"></i>
+            <span>MediCore VR</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}" class="{% if request.endpoint == 'index' %}active{% endif %}">Dashboard</a></li>
+                <li><a href="{{ url_for('patients') }}" class="{% if request.endpoint == 'patients' %}active{% endif %}">Patients</a></li>
+                <li><a href="{{ url_for('doctors') }}" class="{% if request.endpoint == 'doctors' %}active{% endif %}">Doctors</a></li>
+                <li><a href="{{ url_for('appointments') }}" class="{% if request.endpoint == 'appointments' %}active{% endif %}">Appointments</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

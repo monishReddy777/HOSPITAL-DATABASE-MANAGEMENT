@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<header>
+    <h1>Hospital Overview</h1>
+</header>
+
+<div class="stats-grid">
+    <div class="stat-card">
+        <h3>Total Patients</h3>
+        <div class="value">{{ patient_count }}</div>
+    </div>
+    <div class="stat-card">
+        <h3>Active Doctors</h3>
+        <div class="value">{{ doctor_count }}</div>
+    </div>
+    <div class="stat-card">
+        <h3>Pending Appointments</h3>
+        <div class="value">{{ appointment_count }}</div>
+    </div>
+</div>
+
+<div class="data-card">
+    <h2>Recent Appointments</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Patient</th>
+                <th>Doctor</th>
+                <th>Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appt in recent_appointments %}
+            <tr>
+                <td>{{ appt.patient.name }}</td>
+                <td>{{ appt.doctor.name }}</td>
+                <td>{{ appt.appointment_date.strftime('%Y-%m-%d %H:%M') }}</td>
+                <td><span class="badge badge-{{ appt.status.lower() }}">{{ appt.status }}</span></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

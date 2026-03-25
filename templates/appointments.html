@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Appointments{% endblock %}
+{% block content %}
+<header>
+    <h1>Appointments Schedule</h1>
+</header>
+
+<div class="data-card">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <h2>Scheduled Appointments</h2>
+        <button class="btn btn-primary">New Appointment</button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Patient</th>
+                <th>Doctor</th>
+                <th>Date & Time</th>
+                <th>Reason</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appt in appointments %}
+            <tr>
+                <td>{{ appt.patient.name }}</td>
+                <td>{{ appt.doctor.name }}</td>
+                <td>{{ appt.appointment_date.strftime('%Y-%m-%d %H:%M') }}</td>
+                <td>{{ appt.reason }}</td>
+                <td><span class="badge badge-{{ appt.status.lower() }}">{{ appt.status }}</span></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
